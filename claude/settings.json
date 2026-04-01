@@ -18,20 +18,11 @@
   "hooks": {
     "Notification": [
       {
-        "matcher": "permission_prompt",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "osascript -e 'display notification \\\"Claude Code needs your input\\\" with title \\\"Claude Code\\\"'"
-          }
-        ]
-      },
-      {
-        "matcher": "idle_prompt",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "osascript -e 'display notification \\\"Claude Code is done\\\" with title \\\"Claude Code\\\"'"
+            "command": "osascript -e 'display notification \"Claude Code needs your attention\" with title \"Claude Code\"'"
           }
         ]
       }
