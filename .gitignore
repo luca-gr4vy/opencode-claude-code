@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+dist/
+build/
+coverage/
+
+# Local outputs from custom investigation workflows
+INVESTIGATION-*.md

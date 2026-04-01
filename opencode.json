@@ -1,0 +1,80 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "autoupdate": "notify",
+  "permission": {
+    "*": "ask",
+    "bash": {
+      "*": "ask",
+      "yarn build": "allow",
+      "yarn lint *": "allow",
+      "yarn test *": "allow",
+      "pnpm build": "allow",
+      "pnpm lint *": "allow",
+      "pnpm test *": "allow"
+    }
+  },
+  "plugin": ["@mohak34/opencode-notifier@latest"],
+  "model": "github-copilot/claude-sonnet-4.6",
+  "mode": {
+    "plan": { "model": "github-copilot/claude-opus-4.6" },
+    "build": { "model": "github-copilot/gpt-5.3-codex" }
+  },
+  "tools": {
+    "lsp": true
+  },
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "environment": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      },
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "bunx",
+        "chrome-devtools-mcp@latest",
+        "--autoConnect",
+        "--channel=beta"
+      ],
+      "enabled": true
+    }
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen2.5-coder:7b": { "name": "Qwen2.5 Coder 7B (local)" },
+        "qwen2.5-coder:1.5b": { "name": "Qwen2.5 Coder 1.5B (local)" }
+      }
+    }
+  },
+  "agent": {
+    "tiny": {
+      "description": "Very fast local model for text-only tasks, summaries, explanations",
+      "mode": "subagent",
+      "model": "ollama/qwen2.5-coder:1.5b"
+    },
+    "fast": {
+      "description": "Fast local helper for boilerplate, quick refactors, tiny questions",
+      "mode": "subagent",
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "deep": {
+      "description": "Long-context planning, specs, edge-case analysis",
+      "mode": "subagent",
+      "model": "github-copilot/claude-opus-4.6",
+      "permission": {
+        "bash": "allow",
+        "edit": "allow",
+        "skill": { "*": "allow" }
+      }
+    }
+  }
+}
