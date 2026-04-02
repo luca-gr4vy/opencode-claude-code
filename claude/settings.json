@@ -6,6 +6,7 @@
     "command": "npx -y @owloops/claude-powerline@latest --style=powerline"
   },
   "permissions": {
+    "defaultMode": "plan",
     "allow": [
       "Bash(yarn build)",
       "Bash(yarn lint :*)",
