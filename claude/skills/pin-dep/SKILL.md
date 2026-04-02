@@ -10,14 +10,14 @@ argument-hint: [package-name] [target-version] [range?] [build-command?]
 
 I need to update a dependency version in this repo.
 
-Package name: $1
-Target version: $2
-Optional range (default ^$2): $3
-Optional build command (default yarn build): $4
+Package name: $0
+Target version: $1
+Optional range (default ^$1): $2
+Optional build command (default yarn build): $3
 
-Here's where $1 is used in the project:
+Here's where $0 is used in the project:
 
-!`npm ls $1`
+!`npm ls $0`
 
 Requirements:
 

@@ -8,11 +8,11 @@ allowed-tools: Bash, Read, Edit, Write, Grep, Glob
 argument-hint: [package-name] [target-version]
 ---
 
-Upgrade the dependency `$1` to version `$2` in this project.
+Upgrade the dependency `$0` to version `$1` in this project.
 
 ## Current state
 
-!`npm ls $1 2>&1 || true`
+!`npm ls $0 2>&1 || true`
 
 ## Instructions
 
@@ -25,14 +25,14 @@ Follow these phases in order. Do NOT skip phases.
    - `package-lock.json` -> npm
    - `pnpm-lock.yaml` -> pnpm
    - `bun.lock` -> Bun
-2. Determine the currently installed version of `$1` from the `npm ls` output above.
-3. Compare the major version of the current install vs `$2`.
+2. Determine the currently installed version of `$0` from the `npm ls` output above.
+3. Compare the major version of the current install vs `$1`.
    - If the major version differs, this is a major upgrade and you must run Phase 2.
    - Otherwise, skip Phase 2 and continue to Phase 3.
 
 ### Phase 2: Major upgrade research (only if major bump)
 
-1. Fetch package metadata from `https://registry.npmjs.org/$1` to find the `repository` URL.
+1. Fetch package metadata from `https://registry.npmjs.org/$0` to find the `repository` URL.
 2. Fetch the official changelog or release notes. Try these sources via web fetch:
    - GitHub releases: `https://github.com/<owner>/<repo>/releases`
    - Raw CHANGELOG: `https://raw.githubusercontent.com/<owner>/<repo>/main/CHANGELOG.md`
@@ -40,7 +40,7 @@ Follow these phases in order. Do NOT skip phases.
 3. Use Context7 to look up migration guides and breaking changes for the target major version.
    - Resolve the library ID first.
    - Only send public package name and version information.
-4. Search the codebase for actual usage of `$1` (imports, requires, config references) and map findings to breaking changes.
+4. Search the codebase for actual usage of `$0` (imports, requires, config references) and map findings to breaking changes.
 5. Produce a major-upgrade summary:
    - Breaking changes relevant to this project
    - Required code modifications
@@ -50,11 +50,11 @@ Follow these phases in order. Do NOT skip phases.
 ### Phase 3: Apply the upgrade
 
 1. Run the appropriate upgrade command:
-   - Yarn: `yarn upgrade $1@$2` (or `yarn add $1@$2` when needed)
-   - npm: `npm install $1@$2`
-   - pnpm: `pnpm add $1@$2`
-   - Bun: `bun add $1@$2`
-2. If this is a monorepo, check all workspace packages and update each workspace that depends on `$1`.
+   - Yarn: `yarn upgrade $0@$1` (or `yarn add $0@$1` when needed)
+   - npm: `npm install $0@$1`
+   - pnpm: `pnpm add $0@$1`
+   - Bun: `bun add $0@$1`
+2. If this is a monorepo, check all workspace packages and update each workspace that depends on `$0`.
 3. If this is a major upgrade, apply code/config changes identified in Phase 2.
 4. Re-run install to ensure the lockfile is consistent.
 
