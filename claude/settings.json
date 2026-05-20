@@ -10,6 +10,7 @@
     "allow": [
       "Bash(cat*)",
       "Bash(cp*)",
+      "Bash(find*)",
       "Bash(yarn build)",
       "Bash(yarn lint :*)",
       "Bash(yarn test :*)",
