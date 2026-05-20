@@ -9,6 +9,7 @@
     "defaultMode": "plan",
     "allow": [
       "Bash(cat*)",
+      "Bash(cp*)",
       "Bash(yarn build)",
       "Bash(yarn lint :*)",
       "Bash(yarn test :*)",
