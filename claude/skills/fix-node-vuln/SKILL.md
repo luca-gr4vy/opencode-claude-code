@@ -74,3 +74,5 @@ Notes:
 - Minimal diff snippet of the lock entry and any overrides/resolutions change
 - Brief note on dependency tree changes, if any
 - Push a branch, open a PR referencing the dependabot alert/trivy failure, concise description, share the link, stop for review
+  - Reference alerts by full URL (`[264](https://github.com/<owner>/<repo>/security/dependabot/264)`), never bare `#264` — GitHub autolinks `#N` to issue/PR N, not the alert. Same in commit messages.
+  - If `gh pr create/edit` fails on `read:org` scope, use `gh api -X PATCH repos/<owner>/<repo>/pulls/<n> -F body=@file`.
